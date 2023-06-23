@@ -29,7 +29,7 @@ const ExibitionTitle = styled.h2`
   line-height: 5.5rem;
   margin-bottom: 0;
   text-align: center;
-  width: 60%;
+  width: calc(60% + 6rem);
   padding: 8rem 0;
   margin: auto;
 `;
@@ -39,20 +39,30 @@ const CarouselArrowButton = styled.div`
   border-radius: 1rem;
   height: 4rem;
   width: 5rem;
-  position: relative;
   text-align: center;
   float: right;
   font-size: 2.5rem;
   line-height: 4.5rem;
-  
+  display: inline-block;
+  margin: 0 5px;
+  z-index: 4;
+  background-color:
+#e9e7e7;
 `;
 
-const ButtonsBox = styled.div`
+const CarouselArrowPrevBox = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  position: relative;
-  z-index: 3;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: -3rem;
+`;
+
+const CarouselArrowNextBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: -3rem;
+
 `;
 
 type Person = {
@@ -76,33 +86,26 @@ const CarouselBox = ({ CarouselData }: CarouselBoxProps) => {
     setCurrentIndex(index);
   };
 
-  const goToNextCarousel = (currentIndex: number) => {
-    setCurrentIndex(currentIndex + 1);
-  };
-
-  const goToPreviousCarousel = (currentIndex: number) => {
-    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
-  };
-
   const renderCustomArrowPrev = (
-    onClickHandler: React.MouseEventHandler<HTMLButtonElement>,
-    hasPrev: boolean,
-    label: string
+    onClickHandler: React.MouseEventHandler<HTMLButtonElement>
   ) => (
-    <CarouselArrowButton>
-    <AiOutlineArrowLeft onClick={onClickHandler}  />
-  </CarouselArrowButton>
+    <CarouselArrowPrevBox>
+      {" "}
+      <CarouselArrowButton>
+        <AiOutlineArrowLeft onClick={onClickHandler} />
+      </CarouselArrowButton>
+    </CarouselArrowPrevBox>
   );
 
   const renderCustomArrowNext = (
-    onClickHandler: React.MouseEventHandler<HTMLButtonElement>,
-    hasNext: boolean,
-    label: string
+    onClickHandler: React.MouseEventHandler<HTMLButtonElement>
   ) => (
+    <CarouselArrowNextBox>
+      {" "}
       <CarouselArrowButton>
         <AiOutlineArrowRight onClick={onClickHandler} />
       </CarouselArrowButton>
-
+    </CarouselArrowNextBox>
   );
 
   console.log("Carousel data", CarouselData);

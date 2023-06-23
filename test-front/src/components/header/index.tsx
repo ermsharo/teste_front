@@ -55,7 +55,7 @@ const LayoutBox = styled.div`
 `;
 const SectionBox = styled.div`
   width: 100%;
-  padding: 0.5rem;
+  padding-top: 1rem;
 
 `;
 
@@ -67,7 +67,7 @@ const HorizontalHeader = () => {
       {" "}
       <LayoutBox>
         <Menu>
-          <MenuItem>Home</MenuItem>
+          <MenuItem><strong>Home</strong></MenuItem>
           <MenuItem>Guides</MenuItem>
           <MenuItem>Flights</MenuItem>
           <MenuItem>About</MenuItem>
