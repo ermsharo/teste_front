@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 const CarouselCardBox = styled.div`
@@ -9,9 +8,6 @@ justify-content: space-around;
 gap:1rem;
 `;
 
-const CardBox = styled.div`
-  border: 2px solid red;
-`;
 
 const CardImage = styled.div`
 display: flex;
@@ -32,17 +28,23 @@ const CardTitle = styled.h3`
 font-size: 1.5rem;
 `;
 
+type Person = {
+  name: string;
+  experience: string;
+  image: string;
+};
 
-
-function CarouselCard() {
+function CarouselCard({people} :{people : Person}) {
+  console.log("people here ->", people)
+  const {name, experience, image} = people; 
   return (
     <CarouselCardBox>
       <CardImage>
-        <img src="https://images2.fanpop.com/image/photos/13000000/Dachshund-dogs-13073651-1600-1200.jpg" />
+        <img src={image} />
       </CardImage>
-      <CardTitle>Customer Name</CardTitle>
+      <CardTitle>{name}</CardTitle>
 
-      <div>Magna ut voluptate occaecat culpa id ea consequat mollit minim consequat ad cupidatat id. Commodo incididunt cupidatat voluptate dolore. Non in qui commodo ad occaecat veniam officia labore aliquip. </div>
+      <div>{experience} </div>
     </CarouselCardBox>
   );
 }

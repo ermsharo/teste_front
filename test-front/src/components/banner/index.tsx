@@ -1,13 +1,5 @@
-import React from "react";
 import styled from "styled-components";
 
-const HeaderContainer = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f2f2f2;
-  padding: 20px;
-`;
 
 const FilledButton = styled.button`
   background-color: #232323;
@@ -20,38 +12,25 @@ const FilledButton = styled.button`
   font-weight: bolder;
   margin: 0;
 
-
   &:hover {
     background-color: #c4c4c4;
     cursor: pointer;
     color: #232323;
     border-color: #c4c4c4;
-
   }
 `;
 
-const Menu = styled.ul`
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
 
-const MenuItem = styled.li`
-  margin-right: 10px;
-`;
 
 const CardsDisplay = styled.div`
-display: flex;
-justify-content: space-between;
-width: 65%;
-margin: auto; 
-gap: 3.75rem;
-
+  display: flex;
+  justify-content: space-between;
+  width: 65%;
+  margin: auto;
+  gap: 3.75rem;
 `;
 
 const LayoutBox = styled.div`
- 
   width: 65%;
   margin: auto;
   display: grid;
@@ -62,8 +41,8 @@ const SectionBox = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8rem; 
-padding: 0rem 0 7.5rem 0;
+  gap: 8rem;
+  padding: 0rem 0 7.5rem 0;
 `;
 
 const BannerInfo = styled.div`
@@ -95,55 +74,59 @@ const PrimaryTitle = styled.h1`
 const ExibitionCover = styled.div`
   img {
     /* scale: 100% 50%; */
-    width: 100%; 
+    width: 100%;
     height: 100%;
   }
 `;
 
 const ExibitionTitle = styled.h2`
-
-font-family: "Cardo", serif;
+  font-family: "Cardo", serif;
   font-size: 2.25rem;
   font-weight: 700;
   line-height: 2rem;
   margin-bottom: 0;
 
-    &:before{
-      background: black;
-    
+  &:before {
+    background: black;
+
     content: "";
     height: 4px;
     position: absolute;
     width: 3.5rem;
     margin: -2rem 0 0;
   }
-
 `;
 
 const ExibitionTextContext = styled.div``;
 
 const ExibitionCardBox = styled.div`
-display: flex;
-flex-direction: column;
-gap: 2rem; 
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `;
 
-const ExibitionCard = () => {
-  return(
-  <ExibitionCardBox>
-    <ExibitionCover>
-    <img src = "https://inspirationseek.com/wp-content/uploads/2016/02/Cute-Dog-Images.jpg"/>
-
-    </ExibitionCover>
-    <ExibitionTitle>Pariatur veniam aliquip nostrud</ExibitionTitle>
-    <ExibitionTextContext>
-      Pariatur veniam aliquip nostrud adipisicing est esse velit occaecat minim
-      non commodo nisi. Id cupidatat consequat cillum culpa labore nostrud
-      aliquip magna. Id proident nostrud sunt anim ad commodo et non sint anim
-      dolor.
-    </ExibitionTextContext>
-  </ExibitionCardBox>);
+const ExibitionCard = ({ image }: { image: any }) => {
+  return (
+    <ExibitionCardBox>
+      <ExibitionCover>
+        <img src={image} />
+      </ExibitionCover>
+      <ExibitionTitle>Pariatur veniam aliquip nostrud</ExibitionTitle>
+      <ExibitionTextContext>
+        Pariatur veniam aliquip nostrud adipisicing est esse velit occaecat
+        minim non commodo nisi. Id cupidatat consequat cillum culpa labore
+        nostrud aliquip magna. Id proident nostrud sunt anim ad commodo et non
+        sint anim dolor.
+      </ExibitionTextContext>
+    </ExibitionCardBox>
+  );
 };
+
+const cardsImages = [
+  "https://github.com/ermsharo/teste_front/blob/main/test-front/src/assets/Screenshot%20from%202023-06-23%2015-54-52.png?raw=true",
+  "https://github.com/ermsharo/teste_front/blob/main/test-front/src/assets/Screenshot%20from%202023-06-23%2015-55-04.png?raw=true",
+  "https://github.com/ermsharo/teste_front/blob/main/test-front/src/assets/Screenshot%20from%202023-06-23%2015-55-13.png?raw=true",
+];
 
 const HorizontalHeader = () => {
   return (
@@ -153,11 +136,11 @@ const HorizontalHeader = () => {
         <BannerInfo>
           <PrimaryTitle>Travel to your dream destination</PrimaryTitle>
           <div>
-            {" "}
-            Pariatur veniam aliquip nostrud adipisicing est esse velit occaecat
-            minim non commodo nisi. Id cupidatat consequat cillum culpa labore
-            nostrud aliquip magna. Id proident nostrud sunt anim ad commodo et
-            non sint anim dolor.
+            Welcome to our esteemed travel agency, where dreams come to life! We
+            are thrilled to present an extraordinary opportunity for you to
+            travel to your dream destination. Prepare to embark on a journey
+            filled with awe-inspiring landscapes, vibrant cultures, and
+            unforgettable experiences.
           </div>
 
           <div>
@@ -165,14 +148,16 @@ const HorizontalHeader = () => {
           </div>
         </BannerInfo>
         <BannerImage>
-          <img src="https://i.natgeofe.com/n/5f35194b-af37-4f45-a14d-60925b280986/NationalGeographic_2731043_4x3.jpg"></img>
+          <img src="https://raw.githubusercontent.com/ermsharo/teste_front/main/test-front/src/assets/Screenshot%20from%202023-06-23%2002-50-58.png"></img>
         </BannerImage>
       </LayoutBox>
-    
-<CardsDisplay><ExibitionCard/><ExibitionCard/><ExibitionCard/></CardsDisplay>
-
-
-
+      <CardsDisplay>
+        {cardsImages.map((image, index) => (
+            <div key = {index}>
+          <ExibitionCard image={image} />
+          </div>
+        ))}
+      </CardsDisplay>
     </SectionBox>
   );
 };

@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 
@@ -27,13 +26,6 @@ const LightButton = styled.button`
 `;
 
 
-const HeaderContainer = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: #f2f2f2;
-  padding: 1rem;
-`;
 
 
 const Menu = styled.ul`

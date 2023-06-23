@@ -118,7 +118,7 @@ const InfoSection = () => {
           </TextInfoTopics>
         </ExibitionInfo>
         <InfoImage>
-          <img src="https://www.scotsman.com/webimg/b25lY21zOmRmYmExYzE4LTZhY2ItNDBkZS1iMTU1LWY4YTVlZWNmYTdkYzowOTcxZDZlOC00MDc1LTQzYzItOWEyOC00YjNlNzFiY2Y1YzI=.jpg?width=1200&enable=upscale" />
+          <img src="https://github.com/ermsharo/teste_front/blob/main/test-front/src/assets/Screenshot%20from%202023-06-23%2015-55-36.png?raw=true" />
         </InfoImage>
       </LayoutBox>
     </SectionBox>

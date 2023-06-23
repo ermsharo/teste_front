@@ -7,7 +7,6 @@ import CarouselCard from "../carouselCard";
 const Cards = styled.div`
   display: flex;
   gap: 1rem;
-
 `;
 
 const CarouselDisplay = styled.div`
@@ -45,6 +44,7 @@ const CarouselArrowButton = styled.div`
   float: right;
   font-size: 2.5rem;
   line-height: 4.5rem;
+  
 `;
 
 const ButtonsBox = styled.div`
@@ -55,7 +55,21 @@ const ButtonsBox = styled.div`
   z-index: 3;
 `;
 
-const CarouselBox = () => {
+type Person = {
+  name: string;
+  experience: string;
+  image: string;
+};
+
+type TravelAgencyData = {
+  people: Person[];
+};
+
+type CarouselBoxProps = {
+  CarouselData: TravelAgencyData;
+};
+
+const CarouselBox = ({ CarouselData }: CarouselBoxProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleChangeIndex = (index: React.SetStateAction<number>) => {
@@ -69,6 +83,41 @@ const CarouselBox = () => {
   const goToPreviousCarousel = (currentIndex: number) => {
     if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
+
+  const renderCustomArrowPrev = (
+    onClickHandler: React.MouseEventHandler<HTMLButtonElement>,
+    hasPrev: boolean,
+    label: string
+  ) => (
+    <CarouselArrowButton>
+    <AiOutlineArrowLeft onClick={onClickHandler}  />
+  </CarouselArrowButton>
+  );
+
+  const renderCustomArrowNext = (
+    onClickHandler: React.MouseEventHandler<HTMLButtonElement>,
+    hasNext: boolean,
+    label: string
+  ) => (
+      <CarouselArrowButton>
+        <AiOutlineArrowRight onClick={onClickHandler} />
+      </CarouselArrowButton>
+
+  );
+
+  console.log("Carousel data", CarouselData);
+
+  const splitArray = (array: Person[], size: number) => {
+    const result = [];
+    for (let i = 0; i < array.length; i += size) {
+      result.push(array.slice(i, i + size));
+    }
+    return result;
+  };
+  const splitSize = 3;
+
+  const splitArrays = splitArray(CarouselData.people, splitSize);
+  console.log(splitArrays);
   return (
     <CarouselDisplay>
       <ExibitionTitle>Here's what they have to say...</ExibitionTitle>
@@ -80,40 +129,21 @@ const CarouselBox = () => {
         onChange={handleChangeIndex}
         showStatus={false}
         dynamicHeight={false}
+        renderArrowPrev={renderCustomArrowPrev}
+        renderArrowNext={renderCustomArrowNext}
       >
-        <div>
-          <Cards>
-            <Card><CarouselCard/></Card>  <Card><CarouselCard/></Card> <Card><CarouselCard/></Card>
-          </Cards>
-        </div>
-        <div>
-          <Cards>
-          <Card><CarouselCard/></Card>  <Card><CarouselCard/></Card> <Card><CarouselCard/></Card>
-          </Cards>
-        </div>
-        <div>
-          <Cards>
-          <Card><CarouselCard/></Card>  <Card><CarouselCard/></Card> <Card><CarouselCard/></Card>
-          </Cards>
-        </div>
+        {splitArrays.map((peoples, index) => (
+          <div>
+            <Cards key={index}>
+              {peoples.map((people, indexChild) => (
+                <Card key={`${index}-${indexChild}-${people}`}>
+                  <CarouselCard people={people} />
+                </Card>
+              ))}
+            </Cards>
+          </div>
+        ))}
       </Carousel>
-      <ButtonsBox>
-        {" "}
-        <CarouselArrowButton>
-          <AiOutlineArrowLeft
-            onClick={() => {
-              goToPreviousCarousel(currentIndex);
-            }}
-          />
-        </CarouselArrowButton>
-        <CarouselArrowButton>
-          <AiOutlineArrowRight
-            onClick={() => {
-              goToNextCarousel(currentIndex);
-            }}
-          />
-        </CarouselArrowButton>
-      </ButtonsBox>
     </CarouselDisplay>
   );
 };
