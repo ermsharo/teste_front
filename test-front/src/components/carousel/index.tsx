@@ -1,89 +1,71 @@
-import { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState, useRef } from 'react';
+import styled from 'styled-components';
 
-const LayoutBox = styled.div`
-border: 2px solid blue; 
-width: 75%;
-`
-
-const Header = styled.div`
-border: 2px solid blue; 
-width: 75%;
-
-ul{ 
-  display:flex; 
-  justify-content: space;
+interface CarouselProps {
+  images: string[];
 }
-`
 
+const CarouselContainer = styled.div`
+  position: relative;
+  width: 75%; 
+  margin: auto;
 
-const StartBanner = styled.div`
-border: 2px solid blue; 
-width: 75%;
-
-h1{
-
-}
-`
-
-const Button = styled.div`
-border: 2px solid blue; 
-width: 75%;
-
-h1{
-  
-}
-`
-
-const LightButton = styled.button`
-  background-color: transparent; 
-  padding: 10px 20px;
-
-  font-size: 16px;
-  border: 2px solid black;
-  border-radius: 4px;
-  transition: background-color 0.3s ease-in-out;
-
-  &:hover {
-    background-color: #ff0000;
-  }
 `;
 
-const DarkerButton = styled.button`
-
-  padding: 10px 20px;
-  font-size: 16px;
-  border: 2px solid black;
-  border-radius: 4px;
-  transition: background-color 0.3s ease-in-out;
-
-  &:hover {
-    background-color: #ff0000;
-  }
+const ImageContainer = styled.div`
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  transition: transform 0.5s;
 `;
 
+const Image = styled.img<{ active: boolean }>`
+  flex-shrink: 0;
+  width: 100%;
+  height: auto;
+  margin-right: 10px;
+  border: ${(props) => (props.active ? '2px solid red' : 'none')};
+`;
 
+const Carousel: React.FC<CarouselProps> = ({ images }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
+  const goToPreviousSlide = () => {
+    const index = (currentIndex - 1 + images.length) % images.length;
+    setCurrentIndex(index);
+    scrollToCurrentIndex();
+  };
 
+  const goToNextSlide = () => {
+    const index = (currentIndex + 1) % images.length;
+    setCurrentIndex(index);
+    scrollToCurrentIndex();
+  };
 
-function App() {
-  const [count, setCount] = useState(0)
+  const scrollToCurrentIndex = () => {
+    if (containerRef.current) {
+      const { offsetWidth } = containerRef.current;
+      containerRef.current.scrollLeft = currentIndex * offsetWidth;
+    }
+  };
 
   return (
-    <>
-      <LayoutBox>
-  <Header>
-<ul><li>Home</li>
-<li>Guide</li>
-<li>Flights</li>
-<li>About</li>
-</ul>
+    <CarouselContainer>
+      <button onClick={goToPreviousSlide}>Previous</button>
+      <ImageContainer ref={containerRef}>
+        {images.map((image, index) => (
+          <Image
+            key={index}
+            src={image}
+            alt="carousel-slide"
+            active={index === currentIndex}
+          />
+        ))}
+      </ImageContainer>
+      <button onClick={goToNextSlide}>Next</button>
+    </CarouselContainer>
+  );
+};
 
-<LightButton>Contact Us</LightButton>
-  </Header>
-      </LayoutBox>
-    </>
-  )
-}
-
-export default App
+export default Carousel;

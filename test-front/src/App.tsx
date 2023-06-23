@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "./components/header";
 import Banner from "./components/banner"
 import InfoSection from "./components/info-section";
+import Carousel from "./components/carousel";
 
 
 
@@ -40,12 +41,20 @@ const DarkerButton = styled.button`
 function App() {
   const [count, setCount] = useState(0);
 
+  const images = [
+ "https://www.scotsman.com/webimg/b25lY21zOmRmYmExYzE4LTZhY2ItNDBkZS1iMTU1LWY4YTVlZWNmYTdkYzowOTcxZDZlOC00MDc1LTQzYzItOWEyOC00YjNlNzFiY2Y1YzI=.jpg?width=1200&enable=upscale",
+ "https://www.scotsman.com/webimg/b25lY21zOmRmYmExYzE4LTZhY2ItNDBkZS1iMTU1LWY4YTVlZWNmYTdkYzowOTcxZDZlOC00MDc1LTQzYzItOWEyOC00YjNlNzFiY2Y1YzI=.jpg?width=1200&enable=upscale",
+ "https://www.scotsman.com/webimg/b25lY21zOmRmYmExYzE4LTZhY2ItNDBkZS1iMTU1LWY4YTVlZWNmYTdkYzowOTcxZDZlOC00MDc1LTQzYzItOWEyOC00YjNlNzFiY2Y1YzI=.jpg?width=1200&enable=upscale"
+    // Add more image URLs here
+  ];
+
   return (
     <GlobalStyles>
    
         <Header />
         <Banner/>
         <InfoSection/>
+        <Carousel images={images}/>
    
     </GlobalStyles>
   );
