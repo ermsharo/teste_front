@@ -21,6 +21,7 @@ const SectionBox = styled.div`
   width: 100%;
   background-color: #232323;
   color: #e9e7e7;
+  padding: 3rem 0 6.5rem 0;
 `;
 
 const BannerInfo = styled.div`
@@ -33,19 +34,15 @@ const BannerInfo = styled.div`
 
 const InfoImage = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 3.8rem;
 
   img {
     width: 100%;
-    scale: 1 1.15;
+    scale: 1 1.125;
   }
-`;
-
-const PrimaryTitle = styled.h1`
-  font-family: "Cardo", serif;
-  font-size: 5rem;
-  font-weight: bolder;
-  line-height: 5rem;
-  margin-bottom: 0;
 `;
 
 const ExibitionCover = styled.div`
@@ -54,9 +51,11 @@ const ExibitionCover = styled.div`
   }
 `;
 
-
 const ExibitionInfo = styled.div`
-padding: 3.5rem;
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
 `;
 
 const ExibitionTitle = styled.h2`
@@ -65,8 +64,20 @@ const ExibitionTitle = styled.h2`
   font-weight: 700;
   line-height: 3.6rem;
   margin-bottom: 0;
+`;
 
+const ExibitionCardTitle = styled.h1`
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2.7rem;
+  margin-bottom: 0;
+`;
 
+const TextInfoTopics = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  font-size: 1.1rem;
 `;
 
 const ExibitionTextContext = styled.div``;
@@ -77,12 +88,34 @@ const ExibitionCardBox = styled.div`
   gap: 2rem;
 `;
 
-const HorizontalHeader = () => {
+const TextInfo = () => {
+  return (
+    <>
+      <ExibitionCardTitle>Laboris enim sunt</ExibitionCardTitle>
+      <ExibitionTextContext>
+        Consectetur magna minim esse ea culpa id commodo minim nulla adipisicing
+        ipsum fugiat. Cupidatat fugiat adipisicing est sint. Eu ad laborum do eu
+        nostrud. Laboris pariatur do anim nisi enim in sit ipsum pariatur
+        aliquip dolore.
+      </ExibitionTextContext>
+    </>
+  );
+};
+
+const InfoSection = () => {
   return (
     <SectionBox>
       <LayoutBox>
         <ExibitionInfo>
           <ExibitionTitle>Choose anywhere you'd like to be</ExibitionTitle>
+          <TextInfoTopics>
+            <div>
+              <TextInfo />
+            </div>
+            <div>
+              <TextInfo />
+            </div>
+          </TextInfoTopics>
         </ExibitionInfo>
         <InfoImage>
           <img src="https://www.scotsman.com/webimg/b25lY21zOmRmYmExYzE4LTZhY2ItNDBkZS1iMTU1LWY4YTVlZWNmYTdkYzowOTcxZDZlOC00MDc1LTQzYzItOWEyOC00YjNlNzFiY2Y1YzI=.jpg?width=1200&enable=upscale" />
@@ -92,4 +125,4 @@ const HorizontalHeader = () => {
   );
 };
 
-export default HorizontalHeader;
+export default InfoSection;

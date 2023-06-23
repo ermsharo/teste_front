@@ -57,6 +57,7 @@ const SectionBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8rem; 
+padding: 0rem 0 7.5rem 0;
 `;
 
 const BannerInfo = styled.div`
