@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { Key, useState } from "react";
 import styled from "styled-components";
 import Header from "./components/header";
-import Banner from "./components/banner"
+import Banner from "./components/banner";
 import InfoSection from "./components/info-section";
 import Carousel from "./components/carousel";
-
-
+import CarouselCard from "./components/carouselCard";
+import Footer from "./components/footer";
 
 const GlobalStyles = styled.div`
-font-family: 'Lato', sans-serif;
-font-size: 1rem;
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
 `;
 
 const FilledButton = styled.button`
@@ -38,24 +38,27 @@ const DarkerButton = styled.button`
   }
 `;
 
+const CustomComponent = ({ text }: { text: string }) => {
+  return <div>{text}</div>;
+};
+
 function App() {
   const [count, setCount] = useState(0);
 
-  const images = [
- "https://www.scotsman.com/webimg/b25lY21zOmRmYmExYzE4LTZhY2ItNDBkZS1iMTU1LWY4YTVlZWNmYTdkYzowOTcxZDZlOC00MDc1LTQzYzItOWEyOC00YjNlNzFiY2Y1YzI=.jpg?width=1200&enable=upscale",
- "https://www.scotsman.com/webimg/b25lY21zOmRmYmExYzE4LTZhY2ItNDBkZS1iMTU1LWY4YTVlZWNmYTdkYzowOTcxZDZlOC00MDc1LTQzYzItOWEyOC00YjNlNzFiY2Y1YzI=.jpg?width=1200&enable=upscale",
- "https://www.scotsman.com/webimg/b25lY21zOmRmYmExYzE4LTZhY2ItNDBkZS1iMTU1LWY4YTVlZWNmYTdkYzowOTcxZDZlOC00MDc1LTQzYzItOWEyOC00YjNlNzFiY2Y1YzI=.jpg?width=1200&enable=upscale"
-    // Add more image URLs here
-  ];
+  const items = [{ text: "Item 1" }, { text: "Item 2" }, { text: "Item 3" }];
+
+  const renderItem = (
+    item: { text: string },
+    index: Key | null | undefined
+  ) => <CustomComponent key={index} text={item.text} />;
 
   return (
     <GlobalStyles>
-   
-        <Header />
-        <Banner/>
-        <InfoSection/>
-        <Carousel images={images}/>
-   
+      <Header />
+      <Banner />
+      <InfoSection />
+      <Carousel items={items} renderItem={renderItem} />
+      <Footer />
     </GlobalStyles>
   );
 }

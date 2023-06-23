@@ -51,8 +51,10 @@ const LayoutBox = styled.div`
 `;
 const SectionBox = styled.div`
   width: 100%;
-  border: 2px solid red;
+
 `;
+
+
 
 const HorizontalHeader = () => {
   return (

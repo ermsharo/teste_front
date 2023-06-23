@@ -1,71 +1,120 @@
-import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
-
-interface CarouselProps {
-  images: string[];
-}
-
-const CarouselContainer = styled.div`
-  position: relative;
-  width: 75%; 
-  margin: auto;
-
-`;
-
-const ImageContainer = styled.div`
+import React, { useState } from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import styled from "styled-components";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import CarouselCard from "../carouselCard";
+const Cards = styled.div`
   display: flex;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  transition: transform 0.5s;
+  gap: 1rem;
+
 `;
 
-const Image = styled.img<{ active: boolean }>`
-  flex-shrink: 0;
+const CarouselDisplay = styled.div`
+  width: 75%;
+  margin: auto;
+`;
+
+const Card = styled.div`
+  border: 3px solid #232323;
+  border-radius: 1rem;
   width: 100%;
-  height: auto;
-  margin-right: 10px;
-  border: ${(props) => (props.active ? '2px solid red' : 'none')};
+  padding: 4rem 2rem;
 `;
 
-const Carousel: React.FC<CarouselProps> = ({ images }) => {
+const ExibitionTitle = styled.h2`
+  font-family: "Cardo", serif;
+  font-size: 5.25rem;
+  font-weight: 700;
+  line-height: 5.5rem;
+  margin-bottom: 0;
+  text-align: center;
+  width: 60%;
+  padding: 8rem 0;
+  margin: auto;
+`;
+
+const CarouselArrowButton = styled.div`
+  border: 3px solid #232323;
+  border-radius: 1rem;
+  height: 4rem;
+  width: 5rem;
+  position: relative;
+  text-align: center;
+  float: right;
+  font-size: 2.5rem;
+  line-height: 4.5rem;
+`;
+
+const ButtonsBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  z-index: 3;
+`;
+
+const CarouselBox = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
 
-  const goToPreviousSlide = () => {
-    const index = (currentIndex - 1 + images.length) % images.length;
+  const handleChangeIndex = (index: React.SetStateAction<number>) => {
     setCurrentIndex(index);
-    scrollToCurrentIndex();
   };
 
-  const goToNextSlide = () => {
-    const index = (currentIndex + 1) % images.length;
-    setCurrentIndex(index);
-    scrollToCurrentIndex();
+  const goToNextCarousel = (currentIndex: number) => {
+    setCurrentIndex(currentIndex + 1);
   };
 
-  const scrollToCurrentIndex = () => {
-    if (containerRef.current) {
-      const { offsetWidth } = containerRef.current;
-      containerRef.current.scrollLeft = currentIndex * offsetWidth;
-    }
+  const goToPreviousCarousel = (currentIndex: number) => {
+    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
-
   return (
-    <CarouselContainer>
-      <button onClick={goToPreviousSlide}>Previous</button>
-      <ImageContainer ref={containerRef}>
-        {images.map((image, index) => (
-          <Image
-            key={index}
-            src={image}
-            alt="carousel-slide"
-            active={index === currentIndex}
+    <CarouselDisplay>
+      <ExibitionTitle>Here's what they have to say...</ExibitionTitle>
+      <Carousel
+        interval={5000}
+        showIndicators={false}
+        showThumbs={false}
+        selectedItem={currentIndex}
+        onChange={handleChangeIndex}
+        showStatus={false}
+        dynamicHeight={false}
+      >
+        <div>
+          <Cards>
+            <Card><CarouselCard/></Card>  <Card><CarouselCard/></Card> <Card><CarouselCard/></Card>
+          </Cards>
+        </div>
+        <div>
+          <Cards>
+          <Card><CarouselCard/></Card>  <Card><CarouselCard/></Card> <Card><CarouselCard/></Card>
+          </Cards>
+        </div>
+        <div>
+          <Cards>
+          <Card><CarouselCard/></Card>  <Card><CarouselCard/></Card> <Card><CarouselCard/></Card>
+          </Cards>
+        </div>
+      </Carousel>
+      <ButtonsBox>
+        {" "}
+        <CarouselArrowButton>
+          <AiOutlineArrowLeft
+            onClick={() => {
+              goToPreviousCarousel(currentIndex);
+            }}
           />
-        ))}
-      </ImageContainer>
-      <button onClick={goToNextSlide}>Next</button>
-    </CarouselContainer>
+        </CarouselArrowButton>
+        <CarouselArrowButton>
+          <AiOutlineArrowRight
+            onClick={() => {
+              goToNextCarousel(currentIndex);
+            }}
+          />
+        </CarouselArrowButton>
+      </ButtonsBox>
+    </CarouselDisplay>
   );
 };
 
-export default Carousel;
+export default CarouselBox;
