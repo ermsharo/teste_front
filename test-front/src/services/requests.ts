@@ -34,7 +34,8 @@ export const GetExperiences = <T>({ url }: UseAxiosProps<T>): UseAxiosState<T> =
 
   useEffect(() => {
     fetchData();
-  }, [ url]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url]);
 
 
   useEffect(() => {

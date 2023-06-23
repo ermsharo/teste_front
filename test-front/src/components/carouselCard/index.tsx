@@ -35,7 +35,6 @@ type Person = {
 };
 
 function CarouselCard({people} :{people : Person}) {
-  console.log("people here ->", people)
   const {name, experience, image} = people; 
   return (
     <CarouselCardBox>

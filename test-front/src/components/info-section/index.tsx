@@ -1,13 +1,5 @@
-import React from "react";
 import styled from "styled-components";
 
-const HeaderContainer = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f2f2f2;
-  padding: 20px;
-`;
 
 const LayoutBox = styled.div`
   width: 70%;
@@ -24,13 +16,6 @@ const SectionBox = styled.div`
   padding: 3rem 0 6.5rem 0;
 `;
 
-const BannerInfo = styled.div`
-  width: 100%;
-  padding: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
 
 const InfoImage = styled.div`
   width: 100%;
@@ -45,11 +30,6 @@ const InfoImage = styled.div`
   }
 `;
 
-const ExibitionCover = styled.div`
-  img {
-    scale: 100% 50%;
-  }
-`;
 
 const ExibitionInfo = styled.div`
   padding: 3.5rem;
@@ -82,11 +62,6 @@ const TextInfoTopics = styled.div`
 
 const ExibitionTextContext = styled.div``;
 
-const ExibitionCardBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-`;
 
 const TextInfo = () => {
   return (

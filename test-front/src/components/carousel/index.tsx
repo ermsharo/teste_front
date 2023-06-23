@@ -22,7 +22,7 @@ const Card = styled.div`
   padding: 4rem 2rem;
 `;
 
-const ExibitionTitle = styled.h2`
+const ExhibitionTitle = styled.h2`
   font-family: "Cardo", serif;
   font-size: 5.25rem;
   font-weight: 700;
@@ -40,7 +40,6 @@ const CarouselArrowButton = styled.div`
   height: 4rem;
   width: 5rem;
   text-align: center;
-  float: right;
   font-size: 2.5rem;
   line-height: 4.5rem;
   display: inline-block;
@@ -123,7 +122,7 @@ const CarouselBox = ({ CarouselData }: CarouselBoxProps) => {
   console.log(splitArrays);
   return (
     <CarouselDisplay>
-      <ExibitionTitle>Here's what they have to say...</ExibitionTitle>
+      <ExhibitionTitle>Here's what they have to say...</ExhibitionTitle>
       <Carousel
         interval={5000}
         showIndicators={false}
