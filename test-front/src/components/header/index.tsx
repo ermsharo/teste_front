@@ -1,27 +1,40 @@
 import React from "react";
 import styled from "styled-components";
 
+
+const LightButton = styled.button`
+
+  background-color: #e9e7e7
+;
+  color: #232323;
+  border: 3px solid #232323;
+  font-size: 1.3rem;
+  padding: 0.75rem 3.2rem;
+  
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+  font-weight: bolder;
+  margin: 0;
+
+
+  &:hover {
+    background-color: #232323;
+    cursor: pointer;
+    color: #c4c4c4;
+    border-color: #232323;
+
+  }
+`;
+
+
 const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-around;
   background-color: #f2f2f2;
-  padding: 20px;
+  padding: 1rem;
 `;
 
-const LightButton = styled.button`
-  background-color: transparent;
-  padding: 10px 20px;
-
-  font-size: 16px;
-  border: 2px solid black;
-  border-radius: 4px;
-  transition: background-color 0.3s ease-in-out;
-
-  &:hover {
-    background-color: #ff0000;
-  }
-`;
 
 const Menu = styled.ul`
   display: flex;
@@ -43,7 +56,6 @@ const MenuItem = styled.li`
 
 
 const LayoutBox = styled.div`
-  border: 2px solid blue;
   width: 65%;
   margin: auto;
   display: flex; 
@@ -51,6 +63,7 @@ const LayoutBox = styled.div`
 `;
 const SectionBox = styled.div`
   width: 100%;
+  padding: 0.5rem;
 
 `;
 

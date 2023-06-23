@@ -13,6 +13,7 @@ const Cards = styled.div`
 const CarouselDisplay = styled.div`
   width: 75%;
   margin: auto;
+  padding-bottom: 8rem;
 `;
 
 const Card = styled.div`

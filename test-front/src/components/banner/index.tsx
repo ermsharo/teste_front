@@ -14,13 +14,19 @@ const FilledButton = styled.button`
   color: #f2f2f2;
   font-size: 1.3rem;
   padding: 0.75rem 3.2rem;
-  border: 2px solid black;
+  border: none;
   border-radius: 4px;
   transition: background-color 0.3s ease-in-out;
   font-weight: bolder;
+  margin: 0;
+
 
   &:hover {
-    background-color: #ff0000;
+    background-color: #c4c4c4;
+    cursor: pointer;
+    color: #232323;
+    border-color: #c4c4c4;
+
   }
 `;
 
